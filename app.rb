@@ -8,6 +8,9 @@ class UserAuth < Sinatra::Base
   enable :method_override
 
   get '/' do
+    @error_message = session[:error_message]
+    session[:error_message] = nil
+
     erb :index
   end
 
@@ -25,10 +28,11 @@ class UserAuth < Sinatra::Base
 
   post '/signup' do
     user = User.create(email: params[:email], password: params[:password])
-    if user
+    if user.valid?
       session[:user_id] = user.id
       redirect '/profile'
     else
+      session[:error_message] = 'Sorry, that email address is taken'
       redirect '/'
     end
   end
