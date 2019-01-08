@@ -15,4 +15,11 @@ RSpec.describe 'User' do
       expect(User.authenticate('test@test.com', 'secret123')).to eq test_user
     end
   end
+
+  describe '#email_validate' do
+    it 'raises error if user email already exists' do
+      User.create(email: 'test@test.com', password: 'secret123')
+      expect(User.create(email: 'test@test.com', password: 'secret123').errors.full_messages.first).to eq 'Sorry, that email address is taken'
+    end
+  end
 end
