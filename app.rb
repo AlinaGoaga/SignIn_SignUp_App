@@ -10,7 +10,6 @@ class UserAuth < Sinatra::Base
   get '/' do
     @error_message = session[:error_message]
     session[:error_message] = nil
-
     erb :index
   end
 
@@ -27,6 +26,7 @@ class UserAuth < Sinatra::Base
   end
 
   post '/signup' do
+    redirect '/password_error' if params[:password].length < 7
     user = User.create(email: params[:email], password: params[:password])
     if user.valid?
       session[:user_id] = user.id
@@ -35,6 +35,10 @@ class UserAuth < Sinatra::Base
       session[:error_message] = 'Sorry, that email address is taken'
       redirect '/'
     end
+  end
+
+  get '/password_error' do
+    erb :password_error
   end
 
   get '/signin' do

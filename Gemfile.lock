@@ -118,10 +118,11 @@ DEPENDENCIES
   data_mapper
   database_cleaner
   dm-postgres-adapter
+  dm-validations
   pry
   rake
   rspec
   sinatra
 
 BUNDLED WITH
-   1.16.3
+   1.17.2

@@ -9,7 +9,7 @@ RSpec.feature 'User Authentication' do
 
       expect(page).to have_content 'Welcome, test@test.com'
     end
-    scenario "user can't sign up twice with the same email" do
+    scenario 'A user can not sign up twice with the same email' do
       visit '/'
       click_on 'Sign up'
       fill_in :email, with: 'test@test.com'
@@ -22,16 +22,14 @@ RSpec.feature 'User Authentication' do
       click_button 'Sign up'
       expect(page).to have_content 'Sorry, that email address is taken'
     end
-  end
-
-  scenario 'A user cant signup twice with the same email' do
-    visit '/'
-    click_on 'Sign up'
-    fill_in :email, with: 'test@test.com'
-    fill_in :password, with: 'secret123'
-    click_button 'Sign up'
-
-    expect(page).to have_content 'Welcome, test@test.com'
+    scenario 'A user can not use a password that is shorter than 6 characters' do
+      visit '/'
+      click_on 'Sign up'
+      fill_in :email, with: 'test@test.com'
+      fill_in :password, with: 'sec'
+      click_button 'Sign up'
+      expect(page).to have_content 'Your password needs to have at least 6 characters. Please try again.'
+    end
   end
 
   context 'Sign in/out' do

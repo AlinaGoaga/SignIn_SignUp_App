@@ -1,4 +1,5 @@
 require 'data_mapper'
+require 'dm-validations'
 
 class User
   include DataMapper::Resource
