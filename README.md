@@ -5,8 +5,8 @@
 First, clone this repository
 
 ```bash
-> git clone https://github.com/makersacademy/simple_user_auth.git
-> cd simple_user_auth
+> git clone git@github.com:AlinaGoaga/SignIn_SignUp_App.git
+> cd SignIn_SignUp_App
 > bundle install
 ```
 Then, create the development and test databases
@@ -76,8 +76,3 @@ And then, to run locally
         - Sessions controller (get/post signin/out)
         - Home controller ( get index)
         - App controller ( helper methods)
-
-### 5. Further
-
-1. Add user auth to your messaging app.
-2. See Ed
